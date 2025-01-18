@@ -3,7 +3,6 @@ const dotenv = require("dotenv");
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const { json } = require('./middlewares/result');
-// const { OAuth2Client } = require("google-auth-library");
 dotenv.config();
 
 const app = express();
@@ -12,12 +11,17 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.get('/', (req, res) => {
-    res.status(200).send('Plogging');
+    // res.status(200).send('Plogging');
+    res.send(`
+      <h1>Plogging</h1>
+      <h2>Log in</h2>
+      <a href="/login">Log in</a>
+  `);
 })
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
-app.use('/user', require('./routes/user'));
+app.use('/', require('./routes/home'));
 app.use(json.result);
 app.use(json.internalServerError);
 

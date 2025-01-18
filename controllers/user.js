@@ -6,9 +6,6 @@ const { param } = require('../utils/params');
 const { error } = require('../utils/result');
 const { OAuth2Client } = require("google-auth-library");
 
-const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
-const GOOGLE_REDIRECT_URI = 'http://localhost:3000/user/login/redirect';
-
 const controller = {
     async ping(req, res, next) {
       next({
@@ -21,17 +18,19 @@ const controller = {
         try {
           const body = req.body;
           const email = param(body, 'email');
+          const name = param(body, 'name');
+          const profile_picture = param(body, 'profile_picture');
           const connection = await pool.getConnection(async (conn) => conn);
           try {
             await connection.beginTransaction();
             await connection.query(
               `
                 INSERT INTO
-                users(email)
+                users(email, name, profile_picture)
                 VALUE
-                (?);
+                (?, ?, ?);
               `,
-              [email]
+              [email, name, profile_picture]
             );
             await connection.commit();
           next({ message: `Sign-up has been completed.`, status: 200 });
@@ -75,12 +74,14 @@ const controller = {
       async getUser(req, res, next) {
         try {
           const user_id = req.user.user_id;
+          console.log("user id", user_id);
+          
           const [result] = await pool.query(
             `
               SELECT user_id, email, name, profile_picture
               FROM users
               WHERE user_id = ?
-              AND enabled = 1 
+              AND enable = 1 
             `,
             [user_id]
           );

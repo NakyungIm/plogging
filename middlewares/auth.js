@@ -12,19 +12,19 @@ module.exports = {
         try {
             if (token === undefined) throw Error('Undefined Token')
             const verified = auth.verify(token)
-            const user_no = verified.user_no
+            const user_id = verified.user_id
 
             const email = verified.email
             const [results] = await pool.query(`
             SELECT
             COUNT(*) AS 'count'
             FROM users
-            WHERE enabled = 1
-            AND no = ?;
-            `, [user_no])
+            WHERE enable = 1
+            AND user_id = ?;
+            `, [user_id])
 
             if (results[0].count === 0) throw Error('Unauthorized Error')
-            req.user = { user_no, email }
+            req.user = { user_id, email }
             next()
         }
         catch (e) {

@@ -5,15 +5,7 @@ const { checkToken } = require('../middlewares/auth')
 const { OAuth2Client } = require("google-auth-library");
 
 const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
-console.log(`client: ${client}`);
-const GOOGLE_REDIRECT_URI = 'http://localhost:3000/user/login/redirect';
-// Clicking the login button will redirect to GET /login
-router.get('/', (req, res) => {
-    res.send(`
-        <h1>Log in</h1>
-        <a href="/user/login">Log in</a>
-    `);
-});
+const GOOGLE_REDIRECT_URI = 'http://localhost:3000/login/redirect';
 
 // Destination router when the login button is clicked
 // After processing all logic, it redirects to the Google auth server https://accounts.google.com/o/oauth2/v2/auth
@@ -47,6 +39,6 @@ router.get('/login/redirect', (req, res) => {
 
 router.post('/signup', user.createUser)
 router.post('/signin', user.loginUser)
-router.get('/', checkToken, user.getUser)
+router.get('/user', checkToken, user.getUser)
 
 module.exports = router;
