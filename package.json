@@ -1,0 +1,23 @@
+{
+  "name": "plogging",
+  "version": "1.0.0",
+  "description": "Plogging Website",
+  "main": "app.js",
+  "scripts": {
+    "test": "npm test",
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "author": "Amber, Jie, Yawen",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.7.9",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "google-auth-library": "^9.15.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.9"
+  },
+  "type": "module"
+}
