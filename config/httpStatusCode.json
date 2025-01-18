@@ -1,0 +1,54 @@
+{
+    "httpStatus": [
+      {
+        "code": 200,
+        "name": "ok"
+      },
+      {
+        "code": 400,
+        "name": "badRequest",
+        "defaultMessage": "Bad request."
+      },
+      {
+        "code": 401,
+        "name": "unauthorized",
+        "defaultMessage": "You do not have permission to access this API."
+      },
+      {
+        "code": 403,
+        "name": "forbidden",
+        "defaultMessage": "Access to this API is forbidden."
+      },
+      {
+        "code": 404,
+        "name": "notFound",
+        "defaultMessage": "The requested API does not exist."
+      },
+      {
+        "code": 406,
+        "name": "notAcceptable",
+        "defaultMessage": "This API cannot be used."
+      },
+      {
+        "code": 410,
+        "name": "gone",
+        "defaultMessage": "This API is no longer supported."
+      },
+      {
+        "code": 500,
+        "name": "internalServerError",
+        "defaultMessage": "An internal server error occurred."
+      },
+      {
+        "code": 501,
+        "name": "notImplemented",
+        "defaultMessage": "This API is planned for implementation."
+      },
+      {
+        "code": 503,
+        "name": "serviceUnavailable",
+        "defaultMessage": "A temporary server error occurred."
+      }
+    ]
+  }
+  
