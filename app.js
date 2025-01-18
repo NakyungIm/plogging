@@ -22,6 +22,7 @@ app.get('/', (req, res) => {
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use('/', require('./routes/home'));
+app.use('/record',require('./routes/records'))
 app.use(json.result);
 app.use(json.internalServerError);
 

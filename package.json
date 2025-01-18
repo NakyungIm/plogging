@@ -23,5 +23,14 @@
   },
   "devDependencies": {
     "nodemon": "^3.1.9"
-  }
+  },
+  "type": "commonjs",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NakyungIm/plogging.git"
+  },
+  "bugs": {
+    "url": "https://github.com/NakyungIm/plogging/issues"
+  },
+  "homepage": "https://github.com/NakyungIm/plogging#readme"
 }
