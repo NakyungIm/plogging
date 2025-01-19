@@ -92,24 +92,5 @@ const controller = {
         }
       },
 
-      async getCategoryList(req, res, next) {
-        try {
-            const [result] = await pool.query(
-              `
-                SELECT category_id, name, color
-                FROM categories
-                WHERE enable = 1 
-              `,
-            );
-    
-          if (result.length < 1)
-            throw error(`Fail getting the category list.`);
-    
-          next({ result, message: "Success getting the category list.", status: 200 });
-        } catch (e) {
-          next(e);
-        }
-      },
-
 };  
 module.exports = controller;

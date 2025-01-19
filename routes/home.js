@@ -27,5 +27,7 @@ router.get('/ping', user.ping)
 router.post('/signup', user.createUser)
 router.post('/signin', user.loginUser)
 router.get('/user', checkToken, user.getUser)
-router.get('/category/list', user.getCategoryList)
+router.get('/classifier', (req, res) => {
+    classifyLitter();
+  })
 module.exports = router;
