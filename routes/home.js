@@ -3,6 +3,7 @@ const router = express.Router();
 const user = require('../controllers/user')
 const { checkToken } = require('../middlewares/auth')
 const { OAuth2Client } = require("google-auth-library");
+const {classifyLitter} = require('../controllers/Openai.js');
 
 const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
 const GOOGLE_REDIRECT_URI = 'http://localhost:3000/login/redirect';
