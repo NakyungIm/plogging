@@ -56,6 +56,7 @@ const controller = {
                     [user_id, start_time, end_time]
                 );
                 delete result[0].enable;
+                console.log('a')
                 next({...result[0], message:"Record created successfully", status: 200});
             } catch (e) {
                 await connection.rollback();
