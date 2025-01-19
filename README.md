@@ -14,10 +14,10 @@ In addition, as a helpful waste classification assistanant, WePlog enables you t
 For the frontend, React.js was utilized to construct dynamic and visually appealing website modules. We used Node.js as the backend to handle server-side functionality, MySQL for storing user information and logging records,and an OPENAI model to classsify litter objects in the uploaded photos.
 
 ## Challenges we met
-Plogging Website - Backend
+We encountered serval challenges. However the biggest challenge is that how to develop a websie within a limited time!
 
 ## What we learned
-Plogging Website - Backend
+We gained valuable knowledge through this meaningful hackathon! We explored the usage of the OpenAI API and Google Auth API, enhancing our technical skills. Additionally, we delved into the specific rules of waste classification, which broadened our understanding of environmental sustainability.
 
 ## Next Step!!
-Plogging Website - Backend
+This hackathon has been a significant experience for our team. Together, we brainstormed, innovated, and developed our project from scratch! Moving forward, we aim to enhance WePlog by introducing more meaningful features. One of our key goals is to implement the Google Maps API to enable route tracking and guide users to nearby dustbins, making waste disposal even more convenient and efficient!  
