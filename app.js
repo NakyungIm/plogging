@@ -3,8 +3,6 @@ const dotenv = require("dotenv");
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const { json } = require('./middlewares/result');
-const {classifyLitter} = require('./controllers/Openai.js');
-// const { OAuth2Client } = require("google-auth-library");
 dotenv.config();
 
 const app = express();
@@ -18,10 +16,6 @@ app.get('/', (req, res) => {
     <h2>Log in</h2>
     <a href="/login">Log in</a>
   `);;
-})
-
-app.get('/classifier', (req, res) => {
-  classifyLitter();
 })
 
 app.use(bodyParser.json());
