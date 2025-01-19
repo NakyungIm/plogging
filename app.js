@@ -3,6 +3,7 @@ const dotenv = require("dotenv");
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const { json } = require('./middlewares/result');
+const {classifyLitter} = require('./controllers/Openai.js');
 // const { OAuth2Client } = require("google-auth-library");
 dotenv.config();
 
@@ -16,13 +17,18 @@ app.get('/', (req, res) => {
     <h1>Plogging</h1>
     <h2>Log in</h2>
     <a href="/login">Log in</a>
-`);;
+  `);;
+})
+
+app.get('/classifier', (req, res) => {
+  classifyLitter();
 })
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use('/', require('./routes/home'));
 app.use('/record',require('./routes/records'))
+app.use('/category',require('./routes/category'))
 app.use('/api/distance',require('./routes/map'))
 app.use(json.result);
 app.use(json.internalServerError);

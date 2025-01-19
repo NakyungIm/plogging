@@ -7,7 +7,7 @@ const path = require('path');
 });*/
 
 const openai = new OpenAI({apiKey:process.env.apiKey,})
-const image_url = path.join(__dirname, '..', 'testpics', 'test-7.jpeg');
+const image_url = path.join(__dirname, '..', 'testpics', 'compost.jpeg');
 //const openaiClient = new OpenAIApi(openaiConfiguration)
 //const image_url = "../testpics/R_1042.jpg"
 
@@ -48,14 +48,17 @@ async function classifyLitter() {
           });
         if (response.choices && response.choices[0] && response.choices[0].message) {
             console.log(response.choices[0].message.content);  // Assuming message has a 'text' field
+            return response.choices[0].message.content;
         } else {
             console.log("No message content found.");
+            return null;
         }
     } catch (error) {
         console.error("Error occurred while classifying litter:", error.message);
         if (error.response) {
             console.error("Response data:", error.response.data);
         }
+        return null;
     }
 }
 
