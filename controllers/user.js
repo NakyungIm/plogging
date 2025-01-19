@@ -4,7 +4,6 @@ const pool = mysql.createPool(dbconfig);
 const utils = require('../utils');
 const { param } = require('../utils/params');
 const { error } = require('../utils/result');
-const { OAuth2Client } = require("google-auth-library");
 
 const controller = {
     async ping(req, res, next) {
@@ -73,9 +72,7 @@ const controller = {
 
       async getUser(req, res, next) {
         try {
-          const user_id = req.user.user_id;
-          console.log("user id", user_id);
-          
+          const user_id = req.user.user_id;          
           const [result] = await pool.query(
             `
               SELECT user_id, email, name, profile_picture
@@ -89,11 +86,30 @@ const controller = {
           if (result.length < 1)
             throw error(`The account is either deactivated or does not exist.`);
     
-          next({ ...result[0], message: "Sucess getting the account info.", status: 200 });
+          next({ ...result[0], message: "Success getting the account info.", status: 200 });
         } catch (e) {
           next(e);
         }
       },
 
-};
+      async getCategoryList(req, res, next) {
+        try {
+            const [result] = await pool.query(
+              `
+                SELECT category_id, name, color
+                FROM categories
+                WHERE enable = 1 
+              `,
+            );
+    
+          if (result.length < 1)
+            throw error(`Fail getting the category list.`);
+    
+          next({ result, message: "Success getting the category list.", status: 200 });
+        } catch (e) {
+          next(e);
+        }
+      },
+
+};  
 module.exports = controller;

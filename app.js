@@ -23,6 +23,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use('/', require('./routes/home'));
 app.use('/record',require('./routes/records'))
+app.use('/api/distance',require('./routes/map'))
 app.use(json.result);
 app.use(json.internalServerError);
 
