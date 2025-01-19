@@ -12,7 +12,11 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.get('/', (req, res) => {
-    res.status(200).send('Plogging');
+  res.send(`
+    <h1>Plogging</h1>
+    <h2>Log in</h2>
+    <a href="/login">Log in</a>
+`);;
 })
 
 app.use(bodyParser.json());
