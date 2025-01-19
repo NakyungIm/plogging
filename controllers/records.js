@@ -71,7 +71,7 @@ const controller = {
     async getRecordList(req, res, next){
         console.log(req);
         try{
-            const user_id = req.params.user_id;
+            const user_id = req.user.user_id;
             
             const[result] = await pool.query(
                 `
@@ -94,7 +94,7 @@ const controller = {
 
     async getRecord(req, res, next){
         try{
-            const record_id = req.params.record_id;
+            const record_id = req.query.record_id;
 
             const [result] = await pool.query(
                 `
