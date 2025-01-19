@@ -3,6 +3,8 @@ const dotenv = require("dotenv");
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const { json } = require('./middlewares/result');
+const { classifyLitter } = require("./components/Openai");
+
 // const { OAuth2Client } = require("google-auth-library");
 dotenv.config();
 
@@ -12,7 +14,16 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.get('/', (req, res) => {
-    res.status(200).send('Plogging');
+    //res.status(200).send('Plogging');
+    console.log("Received request on /");
+    classifyLitter()
+        .then(() => {
+            res.status(200).send("Litter classified successfully");
+        })
+        .catch((err) => {
+            console.error("Error classifying litter:", err);
+            res.status(500).send("Error processing request");
+        });
 })
 
 app.use(bodyParser.json());
