@@ -16,24 +16,33 @@ const controller = {
             const green_no = param(body, 'green_no');
             const black_no = param(body, 'black_no');
             
+            const startDate = new Date(start_time);
+            const endDate = new Date(end_time);
+            
+            const durationInMinutes = (endDate - startDate) / (1000*60);
+            console.log(durationInMinutes)
+            console.log(start_time, end_time)
             const connection = await pool.getConnection(async (conn) => conn);
             try{
                 await connection.beginTransaction();
-                // 查询时间差
+                
+                /* 查询时间差
                 const [durationResult] = await connection.query(`
                 SELECT TIMESTAMPDIFF(MINUTES, ?, ?) AS time_difference;
                 `, [start_time, end_time]
-                );
+                )
+                
                 const duration = durationResult[0].time_difference;
-                console.log(`Time difference: ${duration} minutes`);
+                console.log(`Time difference: ${duration} minutes`);*/
+                console.log('a')
                 await connection.query(
                     `
                     INSERT INTO
                     records(user_id, start_time, end_time, duration, distance, blue_no, green_no, black_no)
                     VALUES
-                    (?,?,?,?,?,?,?,?,?);
+                    (?,?,?,?,?,?,?,?);
                     `,
-                    [user_id, start_time, end_time, duration, distance, blue_no, green_no, black_no]
+                    [user_id, start_time, end_time, durationInMinutes, distance, blue_no, green_no, black_no]
                 );
                 await connection.commit()
                 const [result] = await pool.query (
